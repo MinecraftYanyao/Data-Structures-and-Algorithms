@@ -38,7 +38,19 @@ int SolveCollision(int key, int count)
 }
 
 // 本题要求实现
-int SearchHash(HashTable *htable, int key);
+int SearchHash(HashTable *htable, int key)
+{
+    int pos = Hash(key, htable->table_size);
+    while (1)
+    {
+        if (htable->ht[pos].status == Empty)
+            return pos;
+        else if (htable->ht[pos].status == Active && key == htable->ht[pos].data.key)
+            return pos;
+        else
+            pos = (pos + 1) % htable->table_size;
+    }
+}
 
 // 插入
 void InsertHash(HashTable *htable, Record x)
