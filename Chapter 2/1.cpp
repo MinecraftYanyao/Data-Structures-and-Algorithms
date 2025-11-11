@@ -66,6 +66,27 @@ void FreeList(Node *head)
     }
 }
 
+void SelectSort(Node **head)
+{
+    Node *key = *head, *tp = NULL, *minpos = NULL;
+    int temp;
+    for (; key != NULL; key = key->next)
+    {
+        minpos = key;
+        tp = key->next;
+        for (; tp != NULL; tp = tp->next)
+        {
+            if (tp->data < minpos->data)
+            {
+                minpos = tp;
+            }
+        }
+        temp = key->data;
+        key->data = minpos->data;
+        minpos->data = temp;
+    }
+}
+
 int main()
 {
     int n;
